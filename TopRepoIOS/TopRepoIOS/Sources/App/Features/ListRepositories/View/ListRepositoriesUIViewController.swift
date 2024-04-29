@@ -12,13 +12,12 @@ class ListRepositoriesUIViewController: UIViewController{
     
     let LIST_REPOSITORY_CELL_IDENTIFIER = "LIST_REPOSITORY_CELL_IDENTIFIER"
     
-//    private lazy var loginLabel: UILabel = {
-//        let view = UILabel(frame: .zero)
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.layer.cornerRadius = 20
-//        return view
-//      }()
-
+    //injetar
+    var interactor:ListRepositoriesInteractor = ListRepositoriesInteractorImpl()
+    
+    
+    var repositories:[Repo] = []
+    
     private lazy var loadingView: AnimationView = {
         let animationView:AnimationView = .init(name: "loading_animation")
         animationView.frame = view.bounds
@@ -33,24 +32,24 @@ class ListRepositoriesUIViewController: UIViewController{
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
-      }()
-
+    }()
+    
     
     override func viewDidLoad() {
+        setupViews()
+        interactor.bind(presenter: self)
+        interactor.start()
+    }
+    
+    func setupViews(){
         view.backgroundColor = UIColor.white
-        
-       
-        setupTableView()
-        
-       
         view.addSubview(loadingView)
         loadingView.isHidden = true;
         
-        loadingView.play(completion: { _ in
-      
-        })
+        
+        
+        setupTableView()
     }
-    
     func setupTableView() {
         repositoriesList.delegate = self
         repositoriesList.dataSource = self
@@ -64,9 +63,10 @@ class ListRepositoriesUIViewController: UIViewController{
         
         repositoriesList.register(RepositoryListItem.self, forCellReuseIdentifier: LIST_REPOSITORY_CELL_IDENTIFIER)
         
+        
         repositoriesList.estimatedRowHeight = 68.0
         repositoriesList.rowHeight = UITableView.automaticDimension
-      }
+    }
 }
 
 extension ListRepositoriesUIViewController: UITableViewDelegate, UITableViewDataSource {
@@ -77,21 +77,54 @@ extension ListRepositoriesUIViewController: UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        100
+        return repositories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: LIST_REPOSITORY_CELL_IDENTIFIER, for: indexPath) as! RepositoryListItem
-        let repo = Repo(id: 123, name: "repo massa", description: "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguis", authorName: "Eduardo", authorProfilePictureUrl: "", starCount: 555, forkCount: 777)
         
+        let repo = repositories[indexPath.item]
         cell.bindItem(repo)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-//        return 256
+    }
+}
+
+
+extension ListRepositoriesUIViewController : ListRepositoryPresenter {
+    
+    func showRepositories(repositories: [Repo]) {
+        showList()
+        self.repositories = repositories
+        repositoriesList.reloadData()
+    }
+    
+    func showLoading() {
+        hideList()
+        loadingView.isHidden = false
+        loadingView.play()
+    }
+    
+    func hideLoading() {
+        loadingView.stop()
+        loadingView.isHidden = true
+    }
+    
+    func showError() {
+        
+    }
+    
+    private func hideList(){
+        repositoriesList.isHidden = true
+    }
+    
+    private func showList(){
+        hideLoading()
+        repositoriesList.isHidden = false
     }
     
     

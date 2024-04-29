@@ -114,6 +114,8 @@ class RepositoryListItem :UITableViewCell{
         forkCount.anchor(top: forkIcon.topAnchor, left: nil, bottom: forkIcon.bottomAnchor, right: forkIcon.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
         
         
+        selectionStyle = .none
+        
         
     }
 
@@ -124,7 +126,10 @@ class RepositoryListItem :UITableViewCell{
     
     
     func bindItem(_ repo:Repo){
-        profilePicture.image = UIImage(named: "github")
+        if let image = UIImage(named: "github"){
+            profilePicture.maskCircle(anyImage:image)
+            profilePicture.layoutIfNeeded()
+        }
         repositoryName.text = repo.name
         userName.text = repo.authorName
         descriptionLabel.text = repo.description
