@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (5.8.1)
+  - lottie-ios (3.2.3)
+  - Swinject (2.8.7)
+
+DEPENDENCIES:
+  - Alamofire
+  - lottie-ios
+  - Swinject
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - lottie-ios
+    - Swinject
+
+SPEC CHECKSUMS:
+  Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
+  lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
+  Swinject: fe8cbab252e12690484090d9cffa017485e268ce
+
+PODFILE CHECKSUM: 1fcfc7d91cae00c9fe520be27bc6b80c34222d0c
+
+COCOAPODS: 1.13.0

@@ -1,0 +1,8 @@
+platform :ios, '11.0'
+use_frameworks!
+
+target 'TopRepoIOS' do
+ pod 'lottie-ios'
+ pod 'Swinject'
+ pod 'Alamofire'
+end
