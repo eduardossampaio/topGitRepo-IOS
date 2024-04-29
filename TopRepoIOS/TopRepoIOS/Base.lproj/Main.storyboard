@@ -8,24 +8,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--List RepositoriesUI View Controller-->
         <scene sceneID="53w-2d-uhB">
             <objects>
-                <viewController id="aRD-xy-GsC" sceneMemberID="viewController">
+                <viewController id="aRD-xy-GsC" customClass="ListRepositoriesUIViewController" customModule="TopRepoIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NLM-zl-yzN">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcQ-lN-JF1">
-                                <rect key="frame" x="159" y="398" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <segue destination="ryo-c0-768" kind="show" id="mxi-s5-4Mk"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="cBX-vn-UTH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -42,8 +31,22 @@
                     <view key="view" contentMode="scaleToFill" id="aWS-Ix-vjL">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="github" translatesAutoresizingMaskIntoConstraints="NO" id="4ON-Kd-pse">
+                                <rect key="frame" x="0.0" y="59" width="64" height="64"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="hPn-SN-j40"/>
+                                    <constraint firstAttribute="width" constant="64" id="wTE-lQ-hzY"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ufQ-Oj-98h"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4ON-Kd-pse" firstAttribute="top" secondItem="ufQ-Oj-98h" secondAttribute="top" id="ivR-lu-q56"/>
+                            <constraint firstItem="4ON-Kd-pse" firstAttribute="leading" secondItem="ufQ-Oj-98h" secondAttribute="leading" id="otg-db-obk"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hbe-dN-LPO"/>
                 </viewController>
@@ -71,6 +74,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="github" width="170.66667175292969" height="170.66667175292969"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
