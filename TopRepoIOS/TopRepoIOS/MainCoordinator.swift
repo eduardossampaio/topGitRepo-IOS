@@ -7,7 +7,9 @@
 
 import Foundation
 import UIKit
+import Swinject
 final class MainCoordinator: Coordinator{
+    
     
     var navigationController: UINavigationController
 
@@ -17,8 +19,6 @@ final class MainCoordinator: Coordinator{
 
         
         func start() {
-//            let viewModel = LoginViewModel(coordinator: self)
-//            let vc = LoginViewController(viewModel: viewModel)
             let vc = ListRepositoriesUIViewController()
             navigationController.pushViewController(vc, animated: true)
         }

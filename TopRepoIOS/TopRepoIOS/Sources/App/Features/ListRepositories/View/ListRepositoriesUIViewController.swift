@@ -13,7 +13,7 @@ class ListRepositoriesUIViewController: UIViewController{
     let LIST_REPOSITORY_CELL_IDENTIFIER = "LIST_REPOSITORY_CELL_IDENTIFIER"
     
     //injetar
-    var interactor:ListRepositoriesInteractor = ListRepositoriesInteractorImpl()
+    var interactor:ListRepositoriesInteractor!
     
     
     var repositories:[Repo] = []
@@ -36,11 +36,14 @@ class ListRepositoriesUIViewController: UIViewController{
     
     
     override func viewDidLoad() {
+        setupInjection();
         setupViews()
         interactor.bind(presenter: self)
         interactor.start()
     }
-    
+    func setupInjection(){
+        interactor = inject(ListRepositoriesInteractor.self)!
+    }
     func setupViews(){
         view.backgroundColor = UIColor.white
         view.addSubview(loadingView)
