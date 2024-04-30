@@ -41,7 +41,7 @@ class ListRepositoriesUIViewController: BaseUIVIewController{
         view.addSubview(repositoriesList)
         
         repositoriesList.translatesAutoresizingMaskIntoConstraints = false
-        repositoriesList.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        repositoriesList.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
         repositoriesList.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         repositoriesList.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         repositoriesList.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true

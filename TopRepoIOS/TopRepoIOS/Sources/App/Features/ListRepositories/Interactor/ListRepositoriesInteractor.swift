@@ -14,7 +14,6 @@ protocol ListRepositoriesInteractor : BaseInteractor<Any>{
 }
 
 class ListRepositoriesInteractorImpl : BaseInteractor<Any>,ListRepositoriesInteractor {
-//    var listRepositoriesObserver: RxSwift.Observable<[Repo]>?
     
     private var useCase: (any ListRepositoriesUseCase)?
     private var presenter: ListRepositoryPresenter? = nil
@@ -43,7 +42,7 @@ class ListRepositoriesInteractorImpl : BaseInteractor<Any>,ListRepositoriesInter
         presenter?.showLoading();
         useCase?.start(params: "").subscribe(onNext: { repositoryList in
             self.presenter?.showRepositories(repositories: repositoryList)
-        })        
+        }).disposed(by: disposeBag)
     }
     
     

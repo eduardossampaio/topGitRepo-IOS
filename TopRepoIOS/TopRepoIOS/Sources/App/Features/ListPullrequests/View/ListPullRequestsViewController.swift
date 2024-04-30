@@ -47,7 +47,7 @@ class ListPullRequestsViewController : BaseUIVIewController {
         
         view.addSubview(pullRequestListTableView)
         
-        pullRequestListTableView.anchor(top:view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor )
+        pullRequestListTableView.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor )
         interactor.bind(presenter: self)
         interactor.start(params: repo)
     }
