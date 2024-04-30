@@ -7,18 +7,44 @@
 
 import Foundation
 import RxSwift
+import Alamofire
 class GithubServiceApi: GitApiServiceProtocol{
     func listAllRepositories(page: Int, searchQuery: SearchQuery?) -> Observable<[Repo]> {
-       
-        let repo = Repo(id: 123, name: "repo massa", description: "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguis", authorName: "Eduardo", authorProfilePictureUrl: "", starCount: 555, forkCount: 777)
-        
-        let repo2 = Repo(id: 567, name: "repo muito doido", description: "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble ", authorName: "Eduardo", authorProfilePictureUrl: "", starCount: 1241, forkCount: 9877)
-        
-        let repo3 = Repo(id: 879, name: "repo foda", description: "that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguis", authorName: "Eduardo", authorProfilePictureUrl: "", starCount: 12411, forkCount: 87622)
-        
-        
-        return Observable.just([repo,repo2,repo3]);
+        return GithubServiceApi.getPosts().map { response in
+            response.items.map { item in
+                item.parse()
+            }
+        }
     }
     
+    static func getPosts() -> Observable<ListRepoResponse> {
+        return GithubServiceApi.request(url: "https://api.github.com/search/repositories?q=language:Java&sort=stars&page=0")
+    }
+    
+    
+    private static func request<T: Codable> (url : String , httpMethod : HTTPMethod = .get,
+                                             parameters: Parameters? = nil,
+                                             encoding: ParameterEncoding = URLEncoding.default,
+                                             headers: HTTPHeaders? = nil ) -> Observable<T> {
+        return Observable<T>.create { observer in
+            
+            let request = AF.request(url, method: .get, parameters: parameters , encoding: encoding, headers: headers).responseDecodable(of: T.self) { response in
+                
+                switch response.result {
+                    
+                case .success(let value):
+                    observer.onNext(value)
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+            
+            return Disposables.create {
+                request.cancel()
+            }
+     
+        }
+    }
     
 }
