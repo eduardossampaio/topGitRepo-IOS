@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 protocol ListRepositoriesInteractor : BaseInteractor{
-    
+    func onEndListReached()
 }
 
 class ListRepositoriesInteractorImpl : ListRepositoriesInteractor, ListRepositoriesUseCaseInteractor {
@@ -32,9 +32,7 @@ class ListRepositoriesInteractorImpl : ListRepositoriesInteractor, ListRepositor
     func start() {
         setupObservers()
         presenter?.showLoading();
-        
-        useCase.start(params: nil)
-                
+        useCase.start(params: nil)                
     }
     
     func setupObservers(){
@@ -44,8 +42,13 @@ class ListRepositoriesInteractorImpl : ListRepositoriesInteractor, ListRepositor
             self.presenter?.showError()
         }).disposed(by: disposeBag)
     }
+    
+    func onEndListReached(){
+        useCase.loadMore()
+    }
+    
     func destroy() {
-        
+            
     }
     
     

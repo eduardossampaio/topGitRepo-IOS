@@ -70,6 +70,10 @@ class ListRepositoriesUIViewController: UIViewController{
         repositoriesList.estimatedRowHeight = 68.0
         repositoriesList.rowHeight = UITableView.automaticDimension
     }
+    
+    func reachLastItem(){
+        interactor.onEndListReached()
+    }
 }
 
 extension ListRepositoriesUIViewController: UITableViewDelegate, UITableViewDataSource {
@@ -89,6 +93,10 @@ extension ListRepositoriesUIViewController: UITableViewDelegate, UITableViewData
         
         let repo = repositories[indexPath.item]
         cell.bindItem(repo)
+        
+        if(indexPath.item == repositories.count - 1){
+            reachLastItem();
+        }
         return cell
     }
     
@@ -102,7 +110,7 @@ extension ListRepositoriesUIViewController : ListRepositoryPresenter {
     
     func showRepositories(repositories: [Repo]) {
         showList()
-        self.repositories = repositories
+        self.repositories.append(contentsOf: repositories)
         repositoriesList.reloadData()
     }
     

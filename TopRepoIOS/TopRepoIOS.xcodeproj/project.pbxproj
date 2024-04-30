@@ -75,6 +75,9 @@
 		6E67F3142BE06581009CB3C6 /* ListRepoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67F3132BE06581009CB3C6 /* ListRepoResponse.swift */; };
 		6E67F3152BE06581009CB3C6 /* ListRepoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67F3132BE06581009CB3C6 /* ListRepoResponse.swift */; };
 		6E67F3162BE06581009CB3C6 /* ListRepoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67F3132BE06581009CB3C6 /* ListRepoResponse.swift */; };
+		6E67F3192BE08862009CB3C6 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67F3182BE08862009CB3C6 /* UIImageViewExtensions.swift */; };
+		6E67F31A2BE08862009CB3C6 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67F3182BE08862009CB3C6 /* UIImageViewExtensions.swift */; };
+		6E67F31B2BE08862009CB3C6 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67F3182BE08862009CB3C6 /* UIImageViewExtensions.swift */; };
 		6EB160982BDFFA36005EA5C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB160972BDFFA36005EA5C7 /* AppDelegate.swift */; };
 		6EB1609A2BDFFA36005EA5C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB160992BDFFA36005EA5C7 /* SceneDelegate.swift */; };
 		6EB1609C2BDFFA36005EA5C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB1609B2BDFFA36005EA5C7 /* ViewController.swift */; };
@@ -131,6 +134,7 @@
 		6E67F30E2BE04CAF009CB3C6 /* SearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQuery.swift; sourceTree = "<group>"; };
 		6E67F3112BE05000009CB3C6 /* GithubServiceApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubServiceApi.swift; sourceTree = "<group>"; };
 		6E67F3132BE06581009CB3C6 /* ListRepoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRepoResponse.swift; sourceTree = "<group>"; };
+		6E67F3182BE08862009CB3C6 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		6EB160942BDFFA36005EA5C7 /* TopRepoIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopRepoIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EB160972BDFFA36005EA5C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6EB160992BDFFA36005EA5C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -271,9 +275,9 @@
 		6E67F2DC2BE02150009CB3C6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6E67F3172BE0880A009CB3C6 /* UIView+Extensions */,
 				6E67F2E62BE037E4009CB3C6 /* presenter */,
 				6E67F2E12BE03770009CB3C6 /* interactors */,
-				6E67F2DD2BE02162009CB3C6 /* ViewExtensions.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -360,6 +364,15 @@
 				6E67F3132BE06581009CB3C6 /* ListRepoResponse.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		6E67F3172BE0880A009CB3C6 /* UIView+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6E67F2DD2BE02162009CB3C6 /* ViewExtensions.swift */,
+				6E67F3182BE08862009CB3C6 /* UIImageViewExtensions.swift */,
+			);
+			path = "UIView+Extensions";
 			sourceTree = "<group>";
 		};
 		6EB1608B2BDFFA36005EA5C7 = {
@@ -624,6 +637,7 @@
 				6EB160982BDFFA36005EA5C7 /* AppDelegate.swift in Sources */,
 				6E67F2E32BE037A7009CB3C6 /* BaseInteractor.swift in Sources */,
 				6E67F2FC2BE04465009CB3C6 /* UseCase.swift in Sources */,
+				6E67F3192BE08862009CB3C6 /* UIImageViewExtensions.swift in Sources */,
 				6EB1609A2BDFFA36005EA5C7 /* SceneDelegate.swift in Sources */,
 				6E67F3062BE04550009CB3C6 /* ListRepositoriesUseCaseImpl.swift in Sources */,
 				6E67F2AF2BE00E9C009CB3C6 /* PullRequest.swift in Sources */,
@@ -662,6 +676,7 @@
 				6E67F2DA2BE01992009CB3C6 /* RepositoryListItem.swift in Sources */,
 				6E67F2AC2BE00E8A009CB3C6 /* Repo.swift in Sources */,
 				6E67F3072BE04550009CB3C6 /* ListRepositoriesUseCaseImpl.swift in Sources */,
+				6E67F31A2BE08862009CB3C6 /* UIImageViewExtensions.swift in Sources */,
 				6E67F2E92BE037F3009CB3C6 /* BasePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -677,6 +692,7 @@
 				6E67F2DB2BE01992009CB3C6 /* RepositoryListItem.swift in Sources */,
 				6E67F2F42BE038E6009CB3C6 /* ListRepositoriesInteractor.swift in Sources */,
 				6EB160BB2BDFFA38005EA5C7 /* TopRepoIOSUITestsLaunchTests.swift in Sources */,
+				6E67F31B2BE08862009CB3C6 /* UIImageViewExtensions.swift in Sources */,
 				6E67F2BD2BE0136A009CB3C6 /* Coordinator.swift in Sources */,
 				6E67F2B12BE00E9C009CB3C6 /* PullRequest.swift in Sources */,
 				6E67F30D2BE04A74009CB3C6 /* GitApiServiceProtocol.swift in Sources */,

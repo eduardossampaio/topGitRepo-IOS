@@ -12,6 +12,8 @@ protocol ListRepositoriesUseCaseInteractor {
 }
 protocol ListRepositoriesUseCase : UseCase<Any>{
     var interactor: ListRepositoriesUseCaseInteractor? { get set }
+    
+    func loadMore();
 } 
 class ListRepositoriesUseCaseImpl :UseCase<Any>, ListRepositoriesUseCase {
     private var _interactor: ListRepositoriesUseCaseInteractor? = nil
@@ -48,7 +50,12 @@ class ListRepositoriesUseCaseImpl :UseCase<Any>, ListRepositoriesUseCase {
             self.gitApiService.listAllRepositories(page: self.currentPage, searchQuery: searchQuery).subscribe { repositories in
                 
                 self.publishSubject.onNext(repositories)
-            }
+            }.disposed(by: disposeBag)
         }
+    }
+    
+    func loadMore() {
+        currentPage += 1
+        fetchRepositories(page: currentPage)
     }
 }

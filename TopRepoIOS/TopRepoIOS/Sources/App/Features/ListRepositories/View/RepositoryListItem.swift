@@ -126,15 +126,16 @@ class RepositoryListItem :UITableViewCell{
     
     
     func bindItem(_ repo:Repo){
-        if let image = UIImage(named: "github"){
-            profilePicture.maskCircle(anyImage:image)
-            profilePicture.layoutIfNeeded()
+        profilePicture.downloadImage(from: repo.authorProfilePictureUrl) { image in
+            self.profilePicture.maskCircle(anyImage: image)
+            self.profilePicture.layoutIfNeeded()
         }
         repositoryName.text = repo.name
         userName.text = repo.authorName
         descriptionLabel.text = repo.description
         starCounts.text = "\(repo.starCount)"
         forkCount.text = "\(repo.forkCount)"
+        
         
     }
     
