@@ -17,11 +17,12 @@ class PullRequestListItem : UITableViewCell{
         return imgView
     }()
     
-    let repositoryName : UILabel = {
+    let pullRequestTitle : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
         lbl.font = UIFont.boldSystemFont(ofSize: 18)
         lbl.textAlignment = .left
+        lbl.numberOfLines = 2
         return lbl
     }()
     
@@ -38,7 +39,7 @@ class PullRequestListItem : UITableViewCell{
     let dateLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
-        lbl.font = UIFont.systemFont(ofSize: 16)
+        lbl.font = UIFont.systemFont(ofSize: 12)
         lbl.textAlignment = .left
         lbl.numberOfLines = 0
         return lbl
@@ -59,7 +60,7 @@ class PullRequestListItem : UITableViewCell{
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.addSubview(profilePicture)
-        self.addSubview(repositoryName)
+        self.addSubview(pullRequestTitle)
         self.addSubview(userName)
         self.addSubview(dateLabel)
         self.addSubview(descriptionLabel)
@@ -68,19 +69,18 @@ class PullRequestListItem : UITableViewCell{
         
         userName.anchor(top: profilePicture.bottomAnchor,left: profilePicture.leftAnchor,bottom: nil,right: profilePicture.rightAnchor)
         
-        repositoryName.anchor(top: profilePicture.topAnchor,left: profilePicture.rightAnchor,bottom: nil,
+        pullRequestTitle.anchor(top: profilePicture.topAnchor,left: profilePicture.rightAnchor,bottom: nil,
         right: rightAnchor)
         
 
-        dateLabel.anchor(top: repositoryName.bottomAnchor,left: nil,bottom:nil,right: rightAnchor, paddingTop: 10,paddingLeft: 0,paddingRight: 10)
+        dateLabel.anchor(top: pullRequestTitle.bottomAnchor,left: nil,bottom:nil,right: rightAnchor, paddingTop: 10,paddingLeft: 0,paddingRight: 10)
         
         
-        descriptionLabel.anchor(top: profilePicture.bottomAnchor, left: repositoryName.leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 10, paddingRight: 10, width: frame.size.width / 2, height: 0, enableInsets: false)
+        descriptionLabel.anchor(top: profilePicture.bottomAnchor, left: pullRequestTitle.leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 10, paddingRight: 10, width: frame.size.width / 2, height: 0, enableInsets: false)
         
-        repositoryName.setContentHuggingPriority(.defaultHigh, for: .vertical)            
+        pullRequestTitle.setContentHuggingPriority(.defaultHigh, for: .vertical)            
         selectionStyle = .none
-        
-        userName.backgroundColor = UIColor.gray
+
     }
 
     
@@ -94,10 +94,10 @@ class PullRequestListItem : UITableViewCell{
             self.profilePicture.maskCircle(anyImage: image)
             self.profilePicture.layoutIfNeeded()
         }
-        repositoryName.text = pullRequest.title
+        pullRequestTitle.text = pullRequest.title
         userName.text = pullRequest.authorName
         descriptionLabel.text = pullRequest.body
-        dateLabel.text = "22/04/2024"
+        dateLabel.text = pullRequest.date?.toString(withFormat: "dd/MM/yyyy")
     }
     
 }
