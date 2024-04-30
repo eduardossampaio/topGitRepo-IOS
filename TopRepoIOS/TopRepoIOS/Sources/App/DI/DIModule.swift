@@ -33,7 +33,7 @@ class DIManager{
         }
         
         container.register(ListPRUseCase.self) { r in
-            return ListPRUseCaseImpl()
+            return ListPRUseCaseImpl(gitAPi: r.resolve(GitApiServiceProtocol.self)!)
         }
         
         container.register(ListPullRequestsInteractor.self){ r in

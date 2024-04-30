@@ -10,6 +10,6 @@ import RxSwift
 protocol GitApiServiceProtocol {
 
     func listAllRepositories(page:Int, searchQuery:SearchQuery?) -> Observable<[Repo]>
-//
-//    func listPullRequests(repo: Repo): Observable<List<PullRequest>>
+    
+    func listPullRequests(repo: Repo) -> Observable<[PullRequest]>
 }

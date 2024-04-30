@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import Lottie
-class ListRepositoriesUIViewController: UIViewController{
+class ListRepositoriesUIViewController: BaseUIVIewController{
     
     let LIST_REPOSITORY_CELL_IDENTIFIER = "LIST_REPOSITORY_CELL_IDENTIFIER"
     
@@ -16,15 +16,6 @@ class ListRepositoriesUIViewController: UIViewController{
     lazy var interactor:ListRepositoriesInteractor = inject(ListRepositoriesInteractor.self)!
         
     var repositories:[Repo] = []
-    
-    private lazy var loadingView: AnimationView = {
-        let animationView:AnimationView = .init(name: "loading_animation")
-        animationView.frame = view.bounds
-        animationView.contentMode = .scaleAspectFit
-        animationView.loopMode = .loop
-        
-        return animationView
-    }()
     
     private lazy var repositoriesList: UITableView = {
         let view = UITableView(frame: .zero)
@@ -35,18 +26,13 @@ class ListRepositoriesUIViewController: UIViewController{
     
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         setupViews()
         interactor.bind(presenter: self)
         interactor.start(params: self)
     }
 
     func setupViews(){
-        view.backgroundColor = UIColor.white
-        view.addSubview(loadingView)
-        loadingView.isHidden = true;
-        
-        
-        
         setupTableView()
     }
     func setupTableView() {
@@ -75,6 +61,11 @@ class ListRepositoriesUIViewController: UIViewController{
     
     func itemClicked(_ repo:Repo){
         interactor.onItemClicked(repo: repo)
+    }
+    
+    override func showLoading() {
+        hideList()
+        super.showLoading()
     }
 }
 
@@ -120,21 +111,6 @@ extension ListRepositoriesUIViewController : ListRepositoryPresenter {
         repositoriesList.reloadData()
     }
     
-    func showLoading() {
-        hideList()
-        loadingView.isHidden = false
-        loadingView.play()
-    }
-    
-    func hideLoading() {
-        loadingView.stop()
-        loadingView.isHidden = true
-    }
-    
-    func showError() {
-        
-    }
-    
     private func hideList(){
         repositoriesList.isHidden = true
     }
@@ -143,6 +119,8 @@ extension ListRepositoriesUIViewController : ListRepositoryPresenter {
         hideLoading()
         repositoriesList.isHidden = false
     }
+    
+   
     
     
 }

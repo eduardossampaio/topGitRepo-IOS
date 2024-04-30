@@ -10,6 +10,8 @@ import RxSwift
 import Alamofire
 class GithubServiceApi: GitApiServiceProtocol{
     
+    
+    
     static let baseUrl = "api.github.com"
     
     func listAllRepositories(page: Int, searchQuery: SearchQuery?) -> Observable<[Repo]> {
@@ -17,6 +19,14 @@ class GithubServiceApi: GitApiServiceProtocol{
             response.items.map { item in
                 item.parse()
             }
+        }
+    }
+    
+    func listPullRequests(repo: Repo) -> Observable<[PullRequest]> {
+        return listAllPullrequests(repo).map { response in
+            response?.map({ pullRequest in
+                pullRequest.parse()                
+            }) ?? []
         }
     }
     
@@ -34,7 +44,7 @@ class GithubServiceApi: GitApiServiceProtocol{
         return GithubServiceApi.request(url:url?.absoluteString ?? "")
     }
     
-    func listPullRequests(repo: Repo) -> Observable<PullRequestResponse> {
+    func listAllPullrequests(_ repo: Repo) -> Observable<[PullRequestResponse]?> {
         let url = self.buildUrl(path: "/repos/\(repo.authorName)/\(repo.name)/pulls")
         return GithubServiceApi.request(url: url?.absoluteString ?? "")
     }

@@ -47,8 +47,7 @@ class ListRepositoriesUseCaseImpl :UseCase<Any>, ListRepositoriesUseCase {
         let searchQuery = SearchQuery(languages: Languages.Java,sortBy: SortType.stars)
         
         if  self.interactor != nil {
-            self.gitApiService.listAllRepositories(page: self.currentPage, searchQuery: searchQuery).subscribe { repositories in
-                
+            self.gitApiService.listAllRepositories(page: self.currentPage, searchQuery: searchQuery).subscribe { repositories in                
                 self.publishSubject.onNext(repositories)
             }.disposed(by: disposeBag)
         }
