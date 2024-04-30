@@ -13,17 +13,17 @@ protocol ListRepositoriesInteractor : BaseInteractor<Any>{
     func onItemClicked(repo: Repo)
 }
 
-class ListRepositoriesInteractorImpl : BaseInteractor<Any>,ListRepositoriesInteractor, ListRepositoriesUseCaseInteractor {
-    var listRepositoriesObserver: RxSwift.Observable<[Repo]>?
+class ListRepositoriesInteractorImpl : BaseInteractor<Any>,ListRepositoriesInteractor {
+//    var listRepositoriesObserver: RxSwift.Observable<[Repo]>?
     
-    private var useCase: ListRepositoriesUseCase!
+    private var useCase: (any ListRepositoriesUseCase)?
     private var presenter: ListRepositoryPresenter? = nil
     private var flowController: FlowController!
     
     private var disposeBag = DisposeBag()
     
     init(
-        useCase: ListRepositoriesUseCase,
+        useCase: any ListRepositoriesUseCase,
         flowController: FlowController,
         presenter: ListRepositoryPresenter? = nil) {
             
@@ -32,7 +32,6 @@ class ListRepositoriesInteractorImpl : BaseInteractor<Any>,ListRepositoriesInter
             self.useCase = useCase
             self.flowController = flowController
             self.presenter = presenter
-            self.useCase.interactor = self
         }
     
     override func bind(presenter: BasePresenter) {
@@ -40,21 +39,16 @@ class ListRepositoriesInteractorImpl : BaseInteractor<Any>,ListRepositoriesInter
     }
     
     override func start(params: Any) {            
-        setupObservers()
+        
         presenter?.showLoading();
-        useCase.start(params: nil)                
+        useCase?.start(params: "").subscribe(onNext: { repositoryList in
+            self.presenter?.showRepositories(repositories: repositoryList)
+        })        
     }
     
-    func setupObservers(){
-        listRepositoriesObserver?.subscribe(onNext: { repositoryList in
-            self.presenter?.showRepositories(repositories: repositoryList)
-        },onError: { error in
-            self.presenter?.showError()
-        }).disposed(by: disposeBag)
-    }
     
     func onEndListReached(){
-        useCase.loadMore()
+        useCase?.loadMore()
     }
     
     func onItemClicked(repo: Repo){

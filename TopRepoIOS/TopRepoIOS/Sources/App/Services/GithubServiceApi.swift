@@ -37,7 +37,8 @@ class GithubServiceApi: GitApiServiceProtocol{
         
         let queryParams = [
             URLQueryItem(name: "q", value: "language:\(lang)"),
-            URLQueryItem(name: "sort", value: sort)
+            URLQueryItem(name: "sort", value: sort),
+            URLQueryItem(name: "page", value: "\(page)")
         ]
         let url = self.buildUrl(path: "/search/repositories", queryItems: queryParams)
         

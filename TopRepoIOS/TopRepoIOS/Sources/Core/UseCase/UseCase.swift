@@ -5,24 +5,12 @@
 //  Created by Eduardo Sampaio on 29/04/24.
 //
 
-import Foundation
-protocol UseCaseProtocol {
-    
-    associatedtype T
-    
-    func start (params:T?);
+import RxSwift
 
-    func finish();
-}
+protocol UseCase {
+    associatedtype Param
+    associatedtype Result
+    
+    func start(params: Param) -> Observable<Result>
 
-class UseCase<T> : UseCaseProtocol{
-    func start(params: T?) {
-        
-    }
-    
-    func finish() {
-
-    }
-    
-    
 }
