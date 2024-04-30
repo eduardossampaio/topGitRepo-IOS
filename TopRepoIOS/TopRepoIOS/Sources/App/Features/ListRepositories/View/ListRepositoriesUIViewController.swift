@@ -69,10 +69,16 @@ class ListRepositoriesUIViewController: UIViewController{
         
         repositoriesList.estimatedRowHeight = 68.0
         repositoriesList.rowHeight = UITableView.automaticDimension
+        
+        title = "Top Java repositories"
     }
     
     func reachLastItem(){
         interactor.onEndListReached()
+    }
+    
+    func itemClicked(_ repo:Repo){
+        interactor.onItemClicked(repo: repo)
     }
 }
 
@@ -102,6 +108,10 @@ extension ListRepositoriesUIViewController: UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        itemClicked(repositories[indexPath.item])
     }
 }
 

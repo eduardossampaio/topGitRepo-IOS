@@ -9,6 +9,8 @@ import Foundation
 import RxSwift
 protocol ListRepositoriesInteractor : BaseInteractor{
     func onEndListReached()
+    
+    func onItemClicked(repo: Repo)
 }
 
 class ListRepositoriesInteractorImpl : ListRepositoriesInteractor, ListRepositoriesUseCaseInteractor {
@@ -16,11 +18,17 @@ class ListRepositoriesInteractorImpl : ListRepositoriesInteractor, ListRepositor
     
     private var useCase: ListRepositoriesUseCase
     private var presenter: ListRepositoryPresenter? = nil
+    private var flowController: FlowController
     
     private var disposeBag = DisposeBag()
     
-    init(useCase: ListRepositoriesUseCase, presenter: ListRepositoryPresenter? = nil) {
-        self.useCase = useCase
+    init(
+        useCase: ListRepositoriesUseCase,
+        flowController: FlowController,
+        presenter: ListRepositoryPresenter? = nil) {
+        
+            self.useCase = useCase
+            self.flowController = flowController
         self.presenter = presenter
         self.useCase.interactor = self
     }
@@ -45,6 +53,10 @@ class ListRepositoriesInteractorImpl : ListRepositoriesInteractor, ListRepositor
     
     func onEndListReached(){
         useCase.loadMore()
+    }
+    
+    func onItemClicked(repo: Repo){
+        flowController.navigateDetails(repository: repo)
     }
     
     func destroy() {

@@ -7,19 +7,32 @@
 
 import Foundation
 import UIKit
-import Swinject
-final class MainCoordinator: Coordinator{
+
+protocol FlowController {
+    func navigateDetails(repository: Repo)
+}
+
+final class MainCoordinator: Coordinator, FlowController{
     
     
     var navigationController: UINavigationController
-
-        init(navigationController: UINavigationController) {
-            self.navigationController = navigationController
-        }
-
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
         
-        func start() {
-            let vc = ListRepositoriesUIViewController()
-            navigationController.pushViewController(vc, animated: true)
+        DIManager.container.register(FlowController.self) { resolve in
+            self
         }
+    }
+    
+    
+    func start() {
+        let vc = ListRepositoriesUIViewController()
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func navigateDetails(repository: Repo){
+        let vc = ListPullRequestsViewController(repo: repository)
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

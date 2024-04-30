@@ -22,7 +22,8 @@ class DIManager{
         }
         container.register(ListRepositoriesInteractor.self) { resolver in
             return ListRepositoriesInteractorImpl(
-                useCase: resolver.resolve(ListRepositoriesUseCase.self)!
+                useCase: resolver.resolve(ListRepositoriesUseCase.self)!,
+                flowController: resolver.resolve(FlowController.self)!
             )
         }
         container.register(ListRepositoriesUIViewController.self) { r in

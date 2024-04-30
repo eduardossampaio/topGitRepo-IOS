@@ -10,7 +10,19 @@ import Foundation
 import UIKit
 extension UIView {
     
-    func anchor (top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?, paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat, enableInsets: Bool) {
+    func anchor (
+        top: NSLayoutYAxisAnchor? = nil,
+        left: NSLayoutXAxisAnchor? = nil,
+        bottom: NSLayoutYAxisAnchor? = nil ,
+        right: NSLayoutXAxisAnchor? = nil,
+        paddingTop: CGFloat = 0 ,
+        paddingLeft: CGFloat = 0,
+        paddingBottom: CGFloat = 0,
+        paddingRight: CGFloat = 0,
+        width: CGFloat = 0,
+        height: CGFloat = 0,
+        enableInsets: Bool = false) {
+            
         var topInset = CGFloat(0)
         var bottomInset = CGFloat(0)
         
