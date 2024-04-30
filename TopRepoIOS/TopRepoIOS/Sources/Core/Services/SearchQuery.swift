@@ -11,11 +11,25 @@ enum Languages {
     case Java
     case Kotlin
     case Swift
-    case Python
+    
+    var description : String {
+        switch self {
+        case .Java: return "Java"
+        case .Kotlin: return "Kotlin"
+        case .Swift: return "Swift"
+        }
+      }
 }
 
 enum SortType {
     case stars
+    var description : String {
+        switch self {
+        case .stars: return "stars"
+        }
+      }
+    
+    
 }
 
 struct SearchQuery{

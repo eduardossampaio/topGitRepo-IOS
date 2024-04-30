@@ -9,16 +9,25 @@ import Foundation
 import RxSwift
 import Alamofire
 class GithubServiceApi: GitApiServiceProtocol{
+    
+    static let baseUrl = "https://api.github.com"
+    
     func listAllRepositories(page: Int, searchQuery: SearchQuery?) -> Observable<[Repo]> {
-        return GithubServiceApi.getPosts().map { response in
+        return GithubServiceApi.listRepositories(searchQuery, page: page).map { response in
             response.items.map { item in
                 item.parse()
             }
         }
     }
     
-    static func getPosts() -> Observable<ListRepoResponse> {
-        return GithubServiceApi.request(url: "https://api.github.com/search/repositories?q=language:Java&sort=stars&page=0")
+    static func listRepositories(_ searchQuery: SearchQuery?, page:Int) -> Observable<ListRepoResponse> {
+        
+        let lang = searchQuery?.languages?.description ?? ""
+        let sort = searchQuery?.sortBy?.description ?? ""
+        
+        let url = "\(baseUrl)/search/repositories?q=language:\(lang)&sort=\(sort)&page=\(page)"        
+        
+        return GithubServiceApi.request(url:url)
     }
     
     
