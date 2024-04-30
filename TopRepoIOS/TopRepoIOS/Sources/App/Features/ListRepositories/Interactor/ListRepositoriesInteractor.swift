@@ -7,18 +7,18 @@
 
 import Foundation
 import RxSwift
-protocol ListRepositoriesInteractor : BaseInteractor{
+protocol ListRepositoriesInteractor : BaseInteractor<Any>{
     func onEndListReached()
     
     func onItemClicked(repo: Repo)
 }
 
-class ListRepositoriesInteractorImpl : ListRepositoriesInteractor, ListRepositoriesUseCaseInteractor {
+class ListRepositoriesInteractorImpl : BaseInteractor<Any>,ListRepositoriesInteractor, ListRepositoriesUseCaseInteractor {
     var listRepositoriesObserver: RxSwift.Observable<[Repo]>?
     
-    private var useCase: ListRepositoriesUseCase
+    private var useCase: ListRepositoriesUseCase!
     private var presenter: ListRepositoryPresenter? = nil
-    private var flowController: FlowController
+    private var flowController: FlowController!
     
     private var disposeBag = DisposeBag()
     
@@ -26,18 +26,20 @@ class ListRepositoriesInteractorImpl : ListRepositoriesInteractor, ListRepositor
         useCase: ListRepositoriesUseCase,
         flowController: FlowController,
         presenter: ListRepositoryPresenter? = nil) {
-        
+            
+            super.init()
+            
             self.useCase = useCase
             self.flowController = flowController
-        self.presenter = presenter
-        self.useCase.interactor = self
-    }
+            self.presenter = presenter
+            self.useCase.interactor = self
+        }
     
-    func bind(presenter: BasePresenter) {
+    override func bind(presenter: BasePresenter) {
         self.presenter = presenter as? ListRepositoryPresenter
     }
     
-    func start() {
+    override func start(params: Any) {            
         setupObservers()
         presenter?.showLoading();
         useCase.start(params: nil)                
@@ -58,10 +60,5 @@ class ListRepositoriesInteractorImpl : ListRepositoriesInteractor, ListRepositor
     func onItemClicked(repo: Repo){
         flowController.navigateDetails(repository: repo)
     }
-    
-    func destroy() {
-            
-    }
-    
     
 }

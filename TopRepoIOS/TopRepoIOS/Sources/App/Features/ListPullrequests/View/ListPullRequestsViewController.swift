@@ -7,13 +7,15 @@
 
 import Foundation
 import UIKit
-class ListPullRequestsViewController :UIViewController {
+class ListPullRequestsViewController : BaseUIVIewController {
     
     let LIST_PULL_REQUEST_CELL_IDENTIFIER = "LIST_PULL_REQUEST_CELL_IDENTIFIER"
     
     var repo:Repo!
+    var pullRequestList: [PullRequest] = []
+    lazy var interactor: ListPullRequestsInteractor = inject(ListPullRequestsInteractor.self)!
     
-    private lazy var pullRequestsList: UITableView = {
+    private lazy var pullRequestListTableView: UITableView = {
         let view = UITableView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -31,29 +33,58 @@ class ListPullRequestsViewController :UIViewController {
     
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = UIColor.white
         title = repo.name
         
         
-        pullRequestsList.register(RepositoryListItem.self, forCellReuseIdentifier: LIST_PULL_REQUEST_CELL_IDENTIFIER)
+        pullRequestListTableView.register(PullRequestListItem.self, forCellReuseIdentifier: LIST_PULL_REQUEST_CELL_IDENTIFIER)
         
-        pullRequestsList.dataSource = self
-        pullRequestsList.delegate = self
+        pullRequestListTableView.dataSource = self
+        pullRequestListTableView.delegate = self
+        pullRequestListTableView.estimatedRowHeight = 68.0
+        pullRequestListTableView.rowHeight = UITableView.automaticDimension
         
-        view.addSubview(pullRequestsList)
+        view.addSubview(pullRequestListTableView)
         
-        pullRequestsList.anchor(top:view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor )
+        pullRequestListTableView.anchor(top:view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor )
+        interactor.bind(presenter: self)
+        interactor.start(params: repo)
     }
 }
 
 extension ListPullRequestsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        return pullRequestList.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: LIST_PULL_REQUEST_CELL_IDENTIFIER, for: indexPath) as! RepositoryListItem
+        let cell = tableView.dequeueReusableCell(withIdentifier: LIST_PULL_REQUEST_CELL_IDENTIFIER, for: indexPath) as! PullRequestListItem
+        
+        
+//        let repo3 = Repo(id: 879, name: "repo foda", description: "that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguisthat are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguisthat are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguisthat are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguisthat are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguis", authorName: "Eduardo",
+//                         authorProfilePictureUrl: "https://avatars.githubusercontent.com/u/21018904?v=4", starCount: 12411, forkCount: 87622)
+//
+        let pullRequest = pullRequestList[indexPath.count]
+        cell.bindItem(pullRequest)
+        
+        
+        
         return cell
+    }
+    
+    
+}
+
+extension ListPullRequestsViewController : ListPRPresenter {
+    
+    func showPullRequestList(pullRequestList: [PullRequest]) {
+        self.pullRequestList = pullRequestList
+        self.pullRequestListTableView.reloadData()
     }
     
     

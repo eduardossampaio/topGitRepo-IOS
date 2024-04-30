@@ -6,12 +6,30 @@
 //
 
 import Foundation
-protocol BaseInteractor {
+protocol IBaseInteractor {
+    
+    associatedtype T
     
     func bind(presenter:BasePresenter)
     
-    func start();
+    func start(params: T);
     
     func destroy();
+    
+}
+
+class BaseInteractor<T> : IBaseInteractor {
+    func bind(presenter: BasePresenter) {
+        
+    }
+    
+    func start(params: T) {
+        
+    }
+    
+    func destroy() {
+        
+    }
+    
     
 }

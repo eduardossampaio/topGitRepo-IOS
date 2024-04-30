@@ -23,7 +23,7 @@ class RepositoryListItem :UITableViewCell{
     let repositoryName : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
-        lbl.font = UIFont.boldSystemFont(ofSize: 16)
+        lbl.font = UIFont.boldSystemFont(ofSize: 18)
         lbl.textAlignment = .left
         return lbl
     }()
@@ -99,7 +99,7 @@ class RepositoryListItem :UITableViewCell{
         
         profilePicture.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: 64, height: 64, enableInsets: false)
         
-        repositoryName.anchor(top: profilePicture.topAnchor, left: profilePicture.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: frame.size.width / 2, height: 0, enableInsets: false)
+        repositoryName.anchor(top: profilePicture.topAnchor, left: profilePicture.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: frame.size.width / 2, height: 0, enableInsets: false)
         
         userName.anchor(top: repositoryName.bottomAnchor, left: profilePicture.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: frame.size.width / 2, height: 0, enableInsets: false)
         

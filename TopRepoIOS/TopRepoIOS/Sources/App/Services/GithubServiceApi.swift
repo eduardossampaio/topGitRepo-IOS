@@ -10,24 +10,44 @@ import RxSwift
 import Alamofire
 class GithubServiceApi: GitApiServiceProtocol{
     
-    static let baseUrl = "https://api.github.com"
+    static let baseUrl = "api.github.com"
     
     func listAllRepositories(page: Int, searchQuery: SearchQuery?) -> Observable<[Repo]> {
-        return GithubServiceApi.listRepositories(searchQuery, page: page).map { response in
+        return listRepositories(searchQuery, page: page).map { response in
             response.items.map { item in
                 item.parse()
             }
         }
     }
     
-    static func listRepositories(_ searchQuery: SearchQuery?, page:Int) -> Observable<ListRepoResponse> {
+    func listRepositories(_ searchQuery: SearchQuery?, page:Int) -> Observable<ListRepoResponse> {
         
         let lang = searchQuery?.languages?.description ?? ""
         let sort = searchQuery?.sortBy?.description ?? ""
         
-        let url = "\(baseUrl)/search/repositories?q=language:\(lang)&sort=\(sort)&page=\(page)"        
+        let queryParams = [
+            URLQueryItem(name: "q", value: "language:\(lang)"),
+            URLQueryItem(name: "sort", value: sort)
+        ]
+        let url = self.buildUrl(path: "/search/repositories", queryItems: queryParams)
         
-        return GithubServiceApi.request(url:url)
+        return GithubServiceApi.request(url:url?.absoluteString ?? "")
+    }
+    
+    func listPullRequests(repo: Repo) -> Observable<PullRequestResponse> {
+        let url = self.buildUrl(path: "/repos/\(repo.authorName)/\(repo.name)/pulls")
+        return GithubServiceApi.request(url: url?.absoluteString ?? "")
+    }
+    
+    
+    func buildUrl(path: String,queryItems: [URLQueryItem]? = nil) -> URL? {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = GithubServiceApi.baseUrl
+        components.path = path
+        components.queryItems = queryItems
+        let url = components.url
+        return url
     }
     
     

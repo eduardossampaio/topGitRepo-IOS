@@ -31,6 +31,16 @@ class DIManager{
             controller.interactor = r.resolve(ListRepositoriesInteractor.self)!
             return controller
         }
+        
+        container.register(ListPRUseCase.self) { r in
+            return ListPRUseCaseImpl()
+        }
+        
+        container.register(ListPullRequestsInteractor.self){ r in
+            let useCase = r.resolve(ListPRUseCase.self)!
+            return ListPullRequestsInteractorImpl(useCase: useCase)
+        }
+        
         return container
     }()
     

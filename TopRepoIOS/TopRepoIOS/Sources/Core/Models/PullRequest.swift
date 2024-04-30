@@ -11,6 +11,7 @@ struct PullRequest{
     var name:String
         var title:String
         var authorName:String
+        var authorProfilePictureUrl: String
         var date:Date
         var body:String
 }

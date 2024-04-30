@@ -40,19 +40,50 @@
                                     <constraint firstAttribute="width" constant="64" id="wTE-lQ-hzY"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="999" text="TItulo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bp-ou-dyh">
+                                <rect key="frame" x="64" y="59.000000000000007" width="329" height="20.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhr-zd-ISd">
+                                <rect key="frame" x="0.0" y="79.333333333333329" width="36" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vai-zI-Bxc">
+                                <rect key="frame" x="0.33333333333334281" y="99.666666666666686" width="392.66666666666663" height="718.33333333333326"/>
+                                <mutableString key="text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ufQ-Oj-98h"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ufQ-Oj-98h" firstAttribute="trailing" secondItem="3bp-ou-dyh" secondAttribute="trailing" id="3Fv-Sc-qLU"/>
+                            <constraint firstItem="3bp-ou-dyh" firstAttribute="leading" secondItem="4ON-Kd-pse" secondAttribute="trailing" id="58o-jT-xzK"/>
+                            <constraint firstAttribute="trailing" secondItem="Vai-zI-Bxc" secondAttribute="trailing" id="6Kz-0a-nLT"/>
+                            <constraint firstItem="Vai-zI-Bxc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ufQ-Oj-98h" secondAttribute="leading" id="9Sj-yv-11q"/>
+                            <constraint firstItem="lhr-zd-ISd" firstAttribute="top" secondItem="3bp-ou-dyh" secondAttribute="bottom" id="E2L-Ny-PjW"/>
+                            <constraint firstItem="ufQ-Oj-98h" firstAttribute="trailing" secondItem="3bp-ou-dyh" secondAttribute="trailing" id="EZk-g0-tsn"/>
+                            <constraint firstItem="lhr-zd-ISd" firstAttribute="leading" secondItem="ufQ-Oj-98h" secondAttribute="leading" id="QAY-e7-T8X"/>
+                            <constraint firstItem="ufQ-Oj-98h" firstAttribute="bottom" secondItem="Vai-zI-Bxc" secondAttribute="bottom" id="S35-BF-oAr"/>
+                            <constraint firstItem="ufQ-Oj-98h" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lhr-zd-ISd" secondAttribute="trailing" id="eLS-4R-FNG"/>
                             <constraint firstItem="4ON-Kd-pse" firstAttribute="top" secondItem="ufQ-Oj-98h" secondAttribute="top" id="ivR-lu-q56"/>
+                            <constraint firstItem="3bp-ou-dyh" firstAttribute="top" secondItem="ufQ-Oj-98h" secondAttribute="top" id="m4u-yE-sas"/>
                             <constraint firstItem="4ON-Kd-pse" firstAttribute="leading" secondItem="ufQ-Oj-98h" secondAttribute="leading" id="otg-db-obk"/>
+                            <constraint firstItem="lhr-zd-ISd" firstAttribute="bottom" secondItem="Vai-zI-Bxc" secondAttribute="top" id="xbW-Ll-AMc"/>
+                            <constraint firstItem="3bp-ou-dyh" firstAttribute="top" secondItem="ufQ-Oj-98h" secondAttribute="top" id="ye0-Gv-1uK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hbe-dN-LPO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOf-6F-ElI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3924" y="39"/>
+            <point key="canvasLocation" x="3922.9007633587785" y="38.732394366197184"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nrj-w5-6V5">
