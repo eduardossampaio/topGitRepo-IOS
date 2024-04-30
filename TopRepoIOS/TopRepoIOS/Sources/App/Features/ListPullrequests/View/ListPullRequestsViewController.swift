@@ -42,7 +42,7 @@ class ListPullRequestsViewController : BaseUIVIewController {
         
         pullRequestListTableView.dataSource = self
         pullRequestListTableView.delegate = self
-        pullRequestListTableView.estimatedRowHeight = 68.0
+        pullRequestListTableView.estimatedRowHeight = 200
         pullRequestListTableView.rowHeight = UITableView.automaticDimension
         
         view.addSubview(pullRequestListTableView)
@@ -64,11 +64,6 @@ extension ListPullRequestsViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LIST_PULL_REQUEST_CELL_IDENTIFIER, for: indexPath) as! PullRequestListItem
-        
-        
-//        let repo3 = Repo(id: 879, name: "repo foda", description: "that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguisthat are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguisthat are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguisthat are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguisthat are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguis", authorName: "Eduardo",
-//                         authorProfilePictureUrl: "https://avatars.githubusercontent.com/u/21018904?v=4", starCount: 12411, forkCount: 87622)
-//
         let pullRequest = pullRequestList[indexPath.item]
         cell.bindItem(pullRequest)
                         
