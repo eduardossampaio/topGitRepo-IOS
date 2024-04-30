@@ -29,17 +29,29 @@ class BaseUIVIewController : UIViewController, BasePresenter {
         return animationView
     }()
     
+    private lazy var emptyListView: AnimationView = {
+        let animationView:AnimationView = .init(name: "empty_list")
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.isHidden = true;
+        return animationView
+    }()
+    
+    
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor.white
         view.addSubview(loadingView)
         view.addSubview(errorView)
+        view.addSubview(emptyListView)
         
         let margins = CGFloat(20)
         
         loadingView.anchor(top:view.topAnchor, left: view.leftAnchor,bottom:view.bottomAnchor, right: view.rightAnchor,paddingTop: margins,paddingLeft: margins, paddingBottom: margins,paddingRight: margins)
         
         errorView.anchor(top:view.topAnchor, left: view.leftAnchor,bottom:view.bottomAnchor, right: view.rightAnchor,paddingTop: margins,paddingLeft: margins, paddingBottom: margins,paddingRight: margins )
+        
+        emptyListView.anchor(top:view.topAnchor, left: view.leftAnchor,bottom:view.bottomAnchor, right: view.rightAnchor,paddingTop: margins,paddingLeft: margins, paddingBottom: margins,paddingRight: margins )
         
         showLoading()
     }
@@ -62,12 +74,22 @@ class BaseUIVIewController : UIViewController, BasePresenter {
         errorView.play()
     }
     
+    func showEmptyResult(){
+        hideAll()
+        view.bringSubviewToFront(emptyListView)
+        emptyListView.isHidden = false
+        emptyListView.play()
+    }
+    
     func hideAll(){
         loadingView.stop()
         loadingView.isHidden = true
         
         errorView.stop()
         errorView.isHidden = true
+        
+        emptyListView.stop()
+        emptyListView.isHidden = true
     }
     
     

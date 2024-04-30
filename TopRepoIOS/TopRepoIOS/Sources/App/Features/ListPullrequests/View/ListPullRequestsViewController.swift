@@ -77,9 +77,12 @@ extension ListPullRequestsViewController : ListPRPresenter {
     
     func showPullRequestList(pullRequestList: [PullRequest]) {
         hideLoading()
-        self.pullRequestList = pullRequestList
-        self.pullRequestListTableView.reloadData()
+        if(pullRequestList.isEmpty){
+            self.showEmptyResult()
+        }else{
+            self.pullRequestList = pullRequestList
+            self.pullRequestListTableView.reloadData()
+        }
     }
-    
     
 }
