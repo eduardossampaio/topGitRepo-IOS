@@ -13,7 +13,7 @@ class ListRepositoriesUIViewController: BaseUIVIewController{
     let LIST_REPOSITORY_CELL_IDENTIFIER = "LIST_REPOSITORY_CELL_IDENTIFIER"
     
     //injetar
-    lazy var interactor:ListRepositoriesInteractor = inject(ListRepositoriesInteractor.self)!
+    lazy var interactor:any ListRepositoriesInteractor = inject((any ListRepositoriesInteractor).self)!
         
     var repositories:[Repo] = []
     
@@ -28,8 +28,7 @@ class ListRepositoriesUIViewController: BaseUIVIewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        interactor.bind(presenter: self)
-        interactor.start(params: self)
+        interactor.start(nil, with: self)
     }
 
     func setupViews(){

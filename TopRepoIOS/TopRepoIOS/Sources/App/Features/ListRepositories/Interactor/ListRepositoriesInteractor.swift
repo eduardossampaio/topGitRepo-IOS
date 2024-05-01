@@ -7,13 +7,13 @@
 
 import Foundation
 import RxSwift
-protocol ListRepositoriesInteractor : BaseInteractor<Any>{
+protocol ListRepositoriesInteractor : BaseInteractor  where Presenter == ListRepositoryPresenter, Param == Any {
     func onEndListReached()
     
     func onItemClicked(repo: Repo)
 }
 
-class ListRepositoriesInteractorImpl : BaseInteractor<Any>,ListRepositoriesInteractor {
+class ListRepositoriesInteractorImpl : ListRepositoriesInteractor {
     
     private var useCase: (any ListRepositoriesUseCase)?
     private var presenter: ListRepositoryPresenter? = nil
@@ -26,25 +26,18 @@ class ListRepositoriesInteractorImpl : BaseInteractor<Any>,ListRepositoriesInter
         flowController: FlowController,
         presenter: ListRepositoryPresenter? = nil) {
             
-            super.init()
-            
             self.useCase = useCase
             self.flowController = flowController
             self.presenter = presenter
         }
     
-    override func bind(presenter: BasePresenter) {
-        self.presenter = presenter as? ListRepositoryPresenter
-    }
-    
-    override func start(params: Any) {            
-        
+    func start(_ params: Any?, with: ListRepositoryPresenter) {
+        self.presenter = with
         presenter?.showLoading();
         useCase?.start(params: "").subscribe(onNext: { repositoryList in
             self.presenter?.showRepositories(repositories: repositoryList)
         }).disposed(by: disposeBag)
     }
-    
     
     func onEndListReached(){
         useCase?.loadMore()

@@ -20,7 +20,7 @@ class DIManager{
                 gitApiService: resolver.resolve(GitApiServiceProtocol.self)!
             )
         }
-        container.register(ListRepositoriesInteractor.self) { resolver in
+        container.register((any ListRepositoriesInteractor).self) { resolver in
             return ListRepositoriesInteractorImpl(
                 useCase: resolver.resolve((any ListRepositoriesUseCase).self)!,
                 flowController: resolver.resolve(FlowController.self)!
@@ -29,7 +29,7 @@ class DIManager{
         
         container.register(ListRepositoriesUIViewController.self) { r in
             let controller = ListRepositoriesUIViewController()
-            controller.interactor = r.resolve(ListRepositoriesInteractor.self)!
+            controller.interactor = r.resolve((any ListRepositoriesInteractor).self)!
             return controller
         }
         
@@ -37,7 +37,7 @@ class DIManager{
             return ListPRUseCaseImpl(gitAPi: r.resolve(GitApiServiceProtocol.self)!)
         }
         
-        container.register(ListPullRequestsInteractor.self){ r in
+        container.register((any ListPullRequestsInteractor).self){ r in
             let useCase = r.resolve((any ListPRUseCase).self)!
             return ListPullRequestsInteractorImpl(useCase: useCase)
         }

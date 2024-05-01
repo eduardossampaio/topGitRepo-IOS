@@ -13,7 +13,7 @@ class ListPullRequestsViewController : BaseUIVIewController {
     
     var repo:Repo!
     var pullRequestList: [PullRequest] = []
-    lazy var interactor: ListPullRequestsInteractor = inject(ListPullRequestsInteractor.self)!
+    lazy var interactor: any ListPullRequestsInteractor = inject((any ListPullRequestsInteractor).self)!
     
     private lazy var pullRequestListTableView: UITableView = {
         let view = UITableView(frame: .zero)
@@ -48,8 +48,8 @@ class ListPullRequestsViewController : BaseUIVIewController {
         view.addSubview(pullRequestListTableView)
         
         pullRequestListTableView.anchor(top: topLayoutGuide.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor )
-        interactor.bind(presenter: self)
-        interactor.start(params: repo)
+        
+        interactor.start(repo,with: self)
     }
 }
 

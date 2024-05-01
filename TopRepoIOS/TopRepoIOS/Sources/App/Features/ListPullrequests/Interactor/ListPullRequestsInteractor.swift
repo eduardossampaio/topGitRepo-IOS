@@ -8,13 +8,11 @@
 import Foundation
 import RxSwift
 
-protocol ListPullRequestsInteractor : BaseInteractor<Repo> {
-   
+protocol ListPullRequestsInteractor : BaseInteractor  where Presenter == ListPRPresenter, Param == Repo {
+
 }
 
-class ListPullRequestsInteractorImpl: BaseInteractor<Repo>, ListPullRequestsInteractor {
-    
-    var listPullRequestsObserver: Observable<[PullRequest]>?
+class ListPullRequestsInteractorImpl: ListPullRequestsInteractor {
            
     private var useCase: any ListPRUseCase
     private var presenter: ListPRPresenter!
@@ -23,20 +21,18 @@ class ListPullRequestsInteractorImpl: BaseInteractor<Repo>, ListPullRequestsInte
     init(useCase: any ListPRUseCase){
         self.useCase = useCase        
     }
-    
-    override func bind(presenter: BasePresenter) {
-        self.presenter = presenter as? ListPRPresenter
-    }
-    
-    
-    override func start(params: Repo) {
-        presenter.showLoading()
-        useCase.start(params: params ).subscribe(onNext: { pullRequestList in
-            self.presenter?.showPullRequestList(pullRequestList: pullRequestList)
-        },onError: { error in
-            self.presenter?.showError()
-        }).disposed(by: disposeBag)
-        
+       
+    func start(_ params: Repo?, with presenter: ListPRPresenter) {
+        self.presenter = presenter
+        if let repo = params{
+            presenter.showLoading()
+            useCase.start(params: repo ).subscribe(onNext: { pullRequestList in
+                self.presenter?.showPullRequestList(pullRequestList: pullRequestList)
+            },onError: { error in
+                self.presenter?.showError()
+            }).disposed(by: disposeBag)
+        }
+
     }
     
 }
