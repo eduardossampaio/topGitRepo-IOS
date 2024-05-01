@@ -20,7 +20,7 @@ final class MainCoordinator: Coordinator, FlowController{
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         
-        DIManager.container.register(FlowController.self) { resolve in
+        DIManager.getConteiner().register(FlowController.self) { resolve in
             self
         }
     }

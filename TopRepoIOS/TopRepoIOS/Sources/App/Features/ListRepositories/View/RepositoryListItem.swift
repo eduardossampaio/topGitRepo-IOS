@@ -44,6 +44,7 @@ class RepositoryListItem :UITableViewCell{
         lbl.textColor = .black
         lbl.font = UIFont.systemFont(ofSize: 12)
         lbl.textAlignment = .left
+        lbl.accessibilityIdentifier = "descriptionLabel"
         lbl.numberOfLines = 3
         return lbl
     }()
@@ -84,6 +85,7 @@ class RepositoryListItem :UITableViewCell{
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.accessibilityIdentifier = "RepositoryListItem"
         
         self.addSubview(profilePicture)
         self.addSubview(repositoryName)

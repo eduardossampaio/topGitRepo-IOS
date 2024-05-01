@@ -9,7 +9,14 @@ import Foundation
 import Swinject
 
 class DIManager{
-    static let container: Container = {
+    static func getConteiner() -> Container {
+        if CommandLine.arguments.contains("--uitesting") {
+            return TestMock.container
+        }
+        return container
+    }
+    
+    private static let container: Container = {
         let container = Container()
         container.register(GitApiServiceProtocol.self) { resolver in
             return GithubServiceApi()
@@ -51,6 +58,6 @@ class DIManager{
 extension UIViewController {
     
     func inject<Service>(_ serviceType: Service.Type) -> Service? {
-        return DIManager.container.resolve(serviceType)
+        return DIManager.getConteiner().resolve(serviceType)
     }
 }

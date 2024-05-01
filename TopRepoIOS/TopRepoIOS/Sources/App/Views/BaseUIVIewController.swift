@@ -17,6 +17,7 @@ class BaseUIVIewController : UIViewController, BasePresenter {
         animationView.isHidden = true;
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
+        animationView.accessibilityIdentifier = "loadingView"
         
         return animationView
     }()
@@ -26,12 +27,14 @@ class BaseUIVIewController : UIViewController, BasePresenter {
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
         animationView.isHidden = true;
+        animationView.accessibilityIdentifier = "errorView"
         return animationView
     }()
     
     private lazy var emptyListView: AnimationView = {
         let animationView:AnimationView = .init(name: "empty_list")
         animationView.contentMode = .scaleAspectFit
+        animationView.accessibilityIdentifier = "emptyListView"
         animationView.loopMode = .loop
         animationView.isHidden = true;
         return animationView

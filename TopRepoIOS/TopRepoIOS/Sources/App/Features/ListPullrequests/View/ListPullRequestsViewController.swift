@@ -44,6 +44,7 @@ class ListPullRequestsViewController : BaseUIVIewController {
         pullRequestListTableView.delegate = self
         pullRequestListTableView.estimatedRowHeight = 200
         pullRequestListTableView.rowHeight = UITableView.automaticDimension
+        pullRequestListTableView.accessibilityIdentifier = "pullRequestList"
         
         view.addSubview(pullRequestListTableView)
         

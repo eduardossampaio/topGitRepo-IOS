@@ -20,7 +20,7 @@ class ListRepositoriesUIViewController: BaseUIVIewController{
     private lazy var repositoriesList: UITableView = {
         let view = UITableView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
-        
+        view.accessibilityIdentifier = "repositoriesList"
         return view
     }()
     
@@ -29,6 +29,7 @@ class ListRepositoriesUIViewController: BaseUIVIewController{
         super.viewDidLoad()
         setupViews()
         interactor.start(nil, with: self)
+        view.accessibilityIdentifier = "ListRepositoriesUIViewController"
     }
 
     func setupViews(){
@@ -40,7 +41,7 @@ class ListRepositoriesUIViewController: BaseUIVIewController{
         view.addSubview(repositoriesList)
         
         repositoriesList.translatesAutoresizingMaskIntoConstraints = false
-        repositoriesList.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
+        repositoriesList.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         repositoriesList.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         repositoriesList.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         repositoriesList.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true

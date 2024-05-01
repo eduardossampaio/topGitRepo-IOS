@@ -8,3 +8,11 @@ target 'TopRepoIOS' do
  pod 'RxSwift', '6.7.0'
  pod 'RxCocoa', '6.7.0'
 end
+
+target 'TopRepoIOSUITests' do
+  pod 'lottie-ios'
+  pod 'Swinject'
+  pod 'Alamofire'
+  pod 'RxSwift', '6.7.0'
+  pod 'RxCocoa', '6.7.0'
+end
