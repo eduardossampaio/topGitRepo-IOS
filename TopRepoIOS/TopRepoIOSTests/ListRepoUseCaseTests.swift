@@ -13,8 +13,7 @@ import RxTest
 import RxBlocking
 
 final class TopRepoIOSTests: XCTestCase {
-    
-    let repo = Repo(id: 0, name: "JavaGuide", description: "Lista de pullrequests vazias", authorName: "Snailclimb", authorProfilePictureUrl:  "https://avatars.githubusercontent.com/u/29880145?v=4", starCount: 1, forkCount: 2)
+
     
     var gitApiMock = GitApiServiceProtocolMock()
     var useCase:(any ListRepositoriesUseCase)?
@@ -24,7 +23,7 @@ final class TopRepoIOSTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        
+        useCase = nil
     }
 
     func testShouldReceiveRepositoriesListWhenStart() throws {
@@ -55,7 +54,7 @@ final class TopRepoIOSTests: XCTestCase {
         
         let repoList2 = try? observer?.toBlocking().first()
         
-        XCTAssertEqual(repoList2, repoList2);        
+        XCTAssertEqual(repoList2, repoList2);
     }
 
 }

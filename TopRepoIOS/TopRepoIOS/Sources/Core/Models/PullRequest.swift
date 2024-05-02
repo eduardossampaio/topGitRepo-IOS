@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PullRequest{
+public struct PullRequest : Equatable{
     var name:String
         var title:String
         var authorName:String

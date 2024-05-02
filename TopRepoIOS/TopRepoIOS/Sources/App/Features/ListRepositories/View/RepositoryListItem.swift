@@ -137,7 +137,17 @@ class RepositoryListItem :UITableViewCell{
         descriptionLabel.text = repo.description
         starCounts.text = "\(repo.starCount)"
         forkCount.text = "\(repo.forkCount)"
-        
+    }
+    
+    func bindAccessibility(_ repo : Repo){
+        accessibilityValue=""
+        repositoryName.accessibilityValue = "Repositório \(repo.name)"
+        userName.accessibilityValue = "Criado por \(repo.authorName)"
+        descriptionLabel.accessibilityValue = "Descriçao \(repo.description)"
+        startIcon.accessibilityValue=""
+        forkIcon.accessibilityValue=""
+        starCounts.accessibilityValue = "\(repo.starCount) estrelas"
+        forkCount.accessibilityValue = "\(repo.forkCount) forks"
         
     }
     

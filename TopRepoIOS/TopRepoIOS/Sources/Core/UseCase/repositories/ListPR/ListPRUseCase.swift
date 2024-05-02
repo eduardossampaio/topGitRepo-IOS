@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 
+
 protocol ListPRUseCase : UseCase {
     typealias Param = Repo
     

@@ -100,6 +100,8 @@ class PullRequestListItem : UITableViewCell{
         dateLabel.text = pullRequest.date?.toString(withFormat: "dd/MM/yyyy")
     }
     
+
+    
 }
 
 

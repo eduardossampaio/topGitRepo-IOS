@@ -10,6 +10,7 @@
 		31642006B3DAA855876D99C0 /* Pods_TopRepoIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4028A23B4A9BC54B43D488DE /* Pods_TopRepoIOSTests.framework */; };
 		6E0E6FEE2BE3D8DF001C9519 /* TestMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9D12252BE2AA8B005D31E1 /* TestMock.swift */; };
 		6E0E6FEF2BE3D940001C9519 /* TestMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9D12252BE2AA8B005D31E1 /* TestMock.swift */; };
+		6E0E6FF12BE42CC6001C9519 /* ListPullRequestUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0E6FF02BE42CC6001C9519 /* ListPullRequestUseCaseTest.swift */; };
 		6E67F2AB2BE00E8A009CB3C6 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67F2AA2BE00E8A009CB3C6 /* Repo.swift */; };
 		6E67F2AC2BE00E8A009CB3C6 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67F2AA2BE00E8A009CB3C6 /* Repo.swift */; };
 		6E67F2AD2BE00E8A009CB3C6 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E67F2AA2BE00E8A009CB3C6 /* Repo.swift */; };
@@ -154,6 +155,7 @@
 		51B8D599E8885B540B3B0F61 /* Pods-TopRepoIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TopRepoIOS.release.xcconfig"; path = "Target Support Files/Pods-TopRepoIOS/Pods-TopRepoIOS.release.xcconfig"; sourceTree = "<group>"; };
 		51C26BCAE84EA3F8E8C97B5D /* Pods-TopRepoIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TopRepoIOS.debug.xcconfig"; path = "Target Support Files/Pods-TopRepoIOS/Pods-TopRepoIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6E0E6FEC2BE3D38E001C9519 /* SwiftyMocky.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyMocky.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E0E6FF02BE42CC6001C9519 /* ListPullRequestUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPullRequestUseCaseTest.swift; sourceTree = "<group>"; };
 		6E67F2AA2BE00E8A009CB3C6 /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		6E67F2AE2BE00E9C009CB3C6 /* PullRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
 		6E67F2B62BE0113B009CB3C6 /* ListRepositoriesUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRepositoriesUIViewController.swift; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				6EB160AE2BDFFA38005EA5C7 /* ListRepoUseCaseTests.swift */,
+				6E0E6FF02BE42CC6001C9519 /* ListPullRequestUseCaseTest.swift */,
 			);
 			path = TopRepoIOSTests;
 			sourceTree = "<group>";
@@ -896,6 +899,7 @@
 				6EA8A1712BE11CD500A7C6F2 /* ListPRPresenter.swift in Sources */,
 				6E67F2EF2BE0386C009CB3C6 /* ListRepositoryPresenter.swift in Sources */,
 				6EB160AF2BDFFA38005EA5C7 /* ListRepoUseCaseTests.swift in Sources */,
+				6E0E6FF12BE42CC6001C9519 /* ListPullRequestUseCaseTest.swift in Sources */,
 				6EA8A1622BE1193300A7C6F2 /* PullRequestResponse.swift in Sources */,
 				6E67F2DF2BE02162009CB3C6 /* ViewExtensions.swift in Sources */,
 				6E67F2BC2BE0136A009CB3C6 /* Coordinator.swift in Sources */,

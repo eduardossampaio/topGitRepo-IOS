@@ -53,6 +53,12 @@ var repoList2 = [
     Repo(id: 123, name: "GitHub-Chinese-Top-Charts", description: "JavaGuide", authorName: "Snailclimb", authorProfilePictureUrl:  "https://avatars.githubusercontent.com/u/29880145?v=4", starCount: 1, forkCount: 2)
 ]
 
+var prList = [
+    PullRequest(name: "JavaGuide", title: "Update README.md", authorName: "Snailclimb", authorProfilePictureUrl: "https://avatars.githubusercontent.com/u/29880145?v=4", body: ""),
+    PullRequest(name: "JavaGuide", title: "Update README.md", authorName: "Snailclimb", authorProfilePictureUrl: "https://avatars.githubusercontent.com/u/29880145?v=4", body: ""),
+    PullRequest(name: "JavaGuide", title: "Update README.md", authorName: "Snailclimb", authorProfilePictureUrl: "https://avatars.githubusercontent.com/u/29880145?v=4", body: "")
+]
+
 class TestMock{
     
     
@@ -83,9 +89,7 @@ class TestMock{
      
     class ListPullRequestsUseCaseMock: ListPRUseCase {
         
-        var prList = [
-            PullRequest(name: "JavaGuide", title: "Update README.md", authorName: "Snailclimb", authorProfilePictureUrl: "https://avatars.githubusercontent.com/u/29880145?v=4", body: "")
-        ]
+       
         func start(params: Repo) -> RxSwift.Observable<[PullRequest]> {
             if(params.id == 0){
                 return Observable.just([])
