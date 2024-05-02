@@ -1,12 +1,16 @@
 PODS:
   - Alamofire (5.8.1)
   - lottie-ios (3.2.3)
+  - RxBlocking (6.7.0):
+    - RxSwift (= 6.7.0)
   - RxCocoa (6.7.0):
     - RxRelay (= 6.7.0)
     - RxSwift (= 6.7.0)
   - RxRelay (6.7.0):
     - RxSwift (= 6.7.0)
   - RxSwift (6.7.0)
+  - RxTest (6.7.0):
+    - RxSwift (= 6.7.0)
   - Sourcery (1.6.0)
   - SwiftyMocky (4.1.0):
     - Sourcery (= 1.6.0)
@@ -15,8 +19,10 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - lottie-ios
+  - RxBlocking (= 6.7.0)
   - RxCocoa (= 6.7.0)
   - RxSwift (= 6.7.0)
+  - RxTest (= 6.7.0)
   - SwiftyMocky
   - Swinject
 
@@ -24,9 +30,11 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - lottie-ios
+    - RxBlocking
     - RxCocoa
     - RxRelay
     - RxSwift
+    - RxTest
     - Sourcery
     - SwiftyMocky
     - Swinject
@@ -34,13 +42,15 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
   lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
+  RxBlocking: 37d221e79cb8ea1fa0ddf6ab029fe53346785688
   RxCocoa: fb0aefb9e7229c8ab057acde714136d19117f102
   RxRelay: 5d39f4d8da150ad47a71b9ce11915e3eae2a8f4d
   RxSwift: 6ee35684dc3f7a63938758f4b7708199517dfa97
+  RxTest: b1e1f2dca4849fd09a79c8f240db4ee2830b919e
   Sourcery: 744f43178637c79bf23127dfe34e2103b3f28499
   SwiftyMocky: 014739247afadb65efb5bb92ede32c22b9365762
   Swinject: fe8cbab252e12690484090d9cffa017485e268ce
 
-PODFILE CHECKSUM: 56dcb740a0c273a175d0f37d32fab92d70a28d5a
+PODFILE CHECKSUM: db07a9ee338feb44de2b6083e7d03154cde93570
 
 COCOAPODS: 1.13.0

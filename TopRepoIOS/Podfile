@@ -1,19 +1,31 @@
 platform :ios, '11.0'
 use_frameworks!
 
-target 'TopRepoIOS' do
- pod 'lottie-ios'
- pod 'Swinject'
- pod 'Alamofire'
- pod 'RxSwift', '6.7.0'
- pod 'RxCocoa', '6.7.0'  
- pod "SwiftyMocky"
-end
-
-target 'TopRepoIOSUITests' do
+def build_pods
   pod 'lottie-ios'
   pod 'Swinject'
   pod 'Alamofire'
   pod 'RxSwift', '6.7.0'
-  pod 'RxCocoa', '6.7.0'
+  pod 'RxCocoa', '6.7.0' 
+  pod "SwiftyMocky" 
+end
+
+def test_pods
+  pod 'RxBlocking', '6.7.0'
+  pod 'RxTest', '6.7.0'
+end
+
+target 'TopRepoIOS' do
+ build_pods
+end
+
+target 'TopRepoIOSTests' do
+ build_pods
+ test_pods
+end
+
+
+target 'TopRepoIOSUITests' do
+ build_pods
+ test_pods
 end
