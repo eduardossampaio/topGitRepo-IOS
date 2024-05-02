@@ -6,7 +6,8 @@ target 'TopRepoIOS' do
  pod 'Swinject'
  pod 'Alamofire'
  pod 'RxSwift', '6.7.0'
- pod 'RxCocoa', '6.7.0'
+ pod 'RxCocoa', '6.7.0'  
+ pod "SwiftyMocky"
 end
 
 target 'TopRepoIOSUITests' do

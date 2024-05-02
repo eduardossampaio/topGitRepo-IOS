@@ -7,23 +7,32 @@
 
 import XCTest
 @testable import TopRepoIOS
+import SwiftyMocky
+import RxSwift
 
 final class TopRepoIOSTests: XCTestCase {
+    
+    let repo = Repo(id: 0, name: "JavaGuide", description: "Lista de pullrequests vazias", authorName: "Snailclimb", authorProfilePictureUrl:  "https://avatars.githubusercontent.com/u/29880145?v=4", starCount: 1, forkCount: 2)
+    
+    var gitApiMock = GitApiServiceProtocolMock()
+    var useCase:(any ListRepositoriesUseCase)?
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        useCase = ListRepositoriesUseCaseImpl(gitApiService: gitApiMock)
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
     }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+        let searchQuery = SearchQuery(languages: Languages.Java,sortBy: SortType.stars)
+        Given(gitApiMock, .listAllRepositories(page: .any, searchQuery: .any, willReturn: Observable.just(repoList))  )
+        
+        useCase?.start(params: "").subscribe { repos in
+            XCTAssertEqual(repos, [])
+        }
+        
     }
 
     func testPerformanceExample() throws {

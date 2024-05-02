@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PullRequest{
+public struct PullRequest{
     var name:String
         var title:String
         var authorName:String

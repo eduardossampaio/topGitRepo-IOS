@@ -7,6 +7,8 @@
 
 import Foundation
 import RxSwift
+
+//sourcery: AutoMockable
 protocol GitApiServiceProtocol {
 
     func listAllRepositories(page:Int, searchQuery:SearchQuery?) -> Observable<[Repo]>

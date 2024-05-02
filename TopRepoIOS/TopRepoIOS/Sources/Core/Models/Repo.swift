@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Repo{
+public struct Repo : Equatable{
     var id: Int
     var name: String
     var description: String
@@ -14,4 +14,6 @@ struct Repo{
     var authorProfilePictureUrl: String
     var starCount: Int
     var forkCount: Int
+    
+    
 }

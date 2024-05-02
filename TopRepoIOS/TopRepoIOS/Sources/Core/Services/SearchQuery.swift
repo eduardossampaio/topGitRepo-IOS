@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Languages {
+public enum Languages {
     case Java
     case Kotlin
     case Swift
@@ -32,7 +32,7 @@ enum SortType {
     
 }
 
-struct SearchQuery{
+public struct SearchQuery{
     var languages: Languages?
     var sortBy: SortType?
 }

@@ -1,0 +1,14 @@
+sourceryCommand: null
+sourceryTemplate: null
+TopRepoIOSTests:
+  sources:
+    include:
+    - ./TopRepoIOS
+  output: ./TopRepoIOS/Sources/Tests/Mock.generated.swift
+  targets:
+  - TopRepoIOSTests
+  testable:
+  - TopRepoIOS
+  import:
+  - Foundation
+  - RxSwift
